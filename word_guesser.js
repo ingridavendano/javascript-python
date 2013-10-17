@@ -1,5 +1,11 @@
 var word = ["F", "o", "x"];
 var guessedLetters = [];
+
+// put blanks in for the word needed to be guessed
+for (var i=0; i<word.length; i++) {
+	guessedLetters.push("_");
+}
+
 var reward = 0;
 var oldReward = 0;
 var hangman = 0;
@@ -26,7 +32,7 @@ function guessLetter(letter) {
             }
         }
 
-        if (oldReward == reward){
+        if (oldReward === reward){
             reward = reward - dollarValue;
             hangman ++;
 
