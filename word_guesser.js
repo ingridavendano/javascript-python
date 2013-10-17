@@ -29,7 +29,27 @@ function guessLetter(letter) {
         if (oldReward == reward){
             reward = reward - dollarValue;
             hangman ++;
-            console.log("     ______\n     |    | \n     |\n     | \n     |\n_____|______\n");
+            switch (hangman) {
+            	case 1:
+	            	console.log("     _______\n     |     |\n     |     @\n     |\n     |\n     |\n_____|________");
+	            	break;
+            	case 2:
+	            	console.log("     _______\n     |     |\n     |     @ \n     |     |\n     |     |\n     | \n_____|________");
+	            	break;
+            	case 3:
+            		console.log("     _______\n     |     |\n     |     @ \n     |    \| \n     |     |\n     | \n_____|________");
+            		break;
+            	case 4:
+            		console.log("     _______\n     |     |\n     |     @\n     |    \|/ \n     |     |\n     | \n_____|________");
+            		break;
+            	case 5:
+            		console.log("     _______\n     |     |\n     |     @\n     |    \|/ \n     |     |\n     |    / \n_____|________");
+            		break;
+            	case 6:
+            		console.log("     _______\n     |     |\n     |     @\n     |    \|/ \n     |     |\n     |    / \ \n_____|________");
+            		break;
+            }
+            
             console.log("Sore times, looks like you're losing $" + dollarValue + " for sucking at life.");
         }
 
@@ -44,15 +64,9 @@ function guessLetter(letter) {
     }
 }
 
-     ______
-     |    |
-     |    @
-     | 
-     |
-_____|______
 
 
-
+console.log("     _______\n     |     |\n     |\n     |\n     |\n     |\n_____|________");
 
 guessLetter("F");
 guessLetter("o");
