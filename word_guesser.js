@@ -1,9 +1,14 @@
-var word = ["F", "o", "x"];
-var guessedLetters = [];
+var word = ["F", "o", "x", "!"];
+var lettersGuessed = [];
 
 // put blanks in for the word needed to be guessed
 for (var i=0; i<word.length; i++) {
-	guessedLetters.push("_");
+	var x = word[i];
+	if (x=="." || x=="!" || x=="'" || x=="-" || x=="?") {
+		lettersGuessed.push(word[i]);
+	} else {
+		lettersGuessed.push(" ");
+	}
 }
 
 var reward = 0;
@@ -15,8 +20,8 @@ function guessLetter(letter) {
     oldReward = reward;
     var run = true;
 
-    for (var i=0; i < guessedLetters.length; i++) {
-        if (letter == guessedLetters[i]) {
+    for (var i=0; i < lettersGuessed.length; i++) {
+        if (letter == lettersGuessed[i]) {
             run = false;
             console.log("You've already tried that letter.");
             break;
@@ -26,7 +31,7 @@ function guessLetter(letter) {
     if (run) {
         for (i=0; i < word.length; i++) {
             if (letter == word[i]) {
-                guessedLetters.push(letter);
+                lettersGuessed.push(letter);
                 reward = reward + dollarValue;
                 console.log("Congratulations for finding a letter. That is $" + dollarValue + " for you to be cool.");
             }
@@ -35,7 +40,6 @@ function guessLetter(letter) {
         if (oldReward === reward){
             reward = reward - dollarValue;
             hangman ++;
-
             console.log("\t_________\n\t|\t|\n\t|\t@");
             switch (hangman) {
             	case 1:
@@ -62,7 +66,7 @@ function guessLetter(letter) {
             console.log("Sore times, looks like you're losing $" + dollarValue + " for sucking at life.");
         }
 
-        if (word.length == guessedLetters.length) {
+        if (word.length == lettersGuessed.length) {
             console.log("Congrats you are baller and figured out how to spell a word. >_>");
             console.log("You won a total of $" + reward);
         } else if (hangman < 6) {
