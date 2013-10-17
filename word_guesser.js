@@ -29,26 +29,29 @@ function guessLetter(letter) {
         if (oldReward == reward){
             reward = reward - dollarValue;
             hangman ++;
+
+            console.log("\t_________\n\t|\t|\n\t|\t@");
             switch (hangman) {
             	case 1:
-	            	console.log("     _______\n     |     |\n     |     @\n     |\n     |\n     |\n_____|________");
-	            	break;
+	            	console.log("\t|\n\t|\n\t|");
+					break;
             	case 2:
-	            	console.log("     _______\n     |     |\n     |     @ \n     |     |\n     |     |\n     | \n_____|________");
+	            	console.log("\t|\t|\n\t|\t|\n\t|");
 	            	break;
             	case 3:
-            		console.log("     _______\n     |     |\n     |     @ \n     |    \| \n     |     |\n     | \n_____|________");
+            		console.log("\t|      \\|\n\t|\t|\n\t|");
             		break;
             	case 4:
-            		console.log("     _______\n     |     |\n     |     @\n     |    \|/ \n     |     |\n     | \n_____|________");
+            		console.log("\t|      \\|/\n\t|\t|\n\t|");
             		break;
             	case 5:
-            		console.log("     _______\n     |     |\n     |     @\n     |    \|/ \n     |     |\n     |    / \n_____|________");
+            		console.log("\t|      \\|/\n\t|\t|\n\t|      /");
             		break;
             	case 6:
-            		console.log("     _______\n     |     |\n     |     @\n     |    \|/ \n     |     |\n     |    / \ \n_____|________");
+            		console.log("\t|      \\|/\n\t|\t|\n\t|      / \\");
             		break;
             }
+            console.log("________|________");
             
             console.log("Sore times, looks like you're losing $" + dollarValue + " for sucking at life.");
         }
@@ -66,8 +69,5 @@ function guessLetter(letter) {
 
 
 
-console.log("     _______\n     |     |\n     |\n     |\n     |\n     |\n_____|________");
+console.log("\t_________\n\t|\t|\n\t|\n\t|\n\t|\n\t|\n________|________");
 
-guessLetter("F");
-guessLetter("o");
-guessLetter("x");
