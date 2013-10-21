@@ -2,7 +2,6 @@
 	<head></head>
 	<body>
 		<h1>My Book List: </h1>
-		<p></p>
 		<script type="text/javascript">
 			// getting the page document
 			var bodyNode = document.getElementsByTagName('body')[0];
@@ -46,12 +45,13 @@
 			};
 
 			// book class
-			var Book = function(title, author, genre) {
+			var Book = function(title, author, genre, url) {
 				this.title = title;
 				this.author = author;
 				this.genre = genre;
 				this.read = false;
 				this.dateRead = "";
+				this.imgURL = url;
 
 				// ideally this function takes in a Date object
 				this.readOnDate = function(date) {
@@ -60,35 +60,91 @@
 				};
 			};
 
+			// creates a list of books on an HTML page
 			function listBooks() {
 				for (var i=0; i<reading.bookShelf.length; i++) {
 					var book = reading.bookShelf[i]
 
 					// create new book element in a list item tag
 					var newListItem = document.createElement('li');
-					var text = document.createTextNode(book.title + " by " + book.author);
+					var textTitle = document.createTextNode(book.title);
+					var newLine = document.createElement('br');
+					var textAuthor = document.createTextNode(book.author);
+					
+					// creates an image to show up
+					var img = document.createElement('img');
+					img.src = book.imgURL;
+					img.setAttribute('height', '100px');
+					img.setAttribute('width', '60px');
 
-					// appends text to the list item and then eventually body
-					newListItem.appendChild(text);
+					// add image to its own div element
+					var imgDiv = document.createElement('div');
+					imgDiv.appendChild(img);
+					imgDiv.setAttribute('style', 'float: left; clear: left');
+					// imgDiv.setAttribute('style', 'margin-right: 10px;');
+
+
+					// add text to its own div element
+					var textDiv = document.createElement('div');
+					textDiv.appendChild(textTitle);
+					textDiv.appendChild(newLine);
+					textDiv.appendChild(textAuthor);
+					// textDiv.setAttribute('style', 'float: left;')
+
+					var listDiv = document.createElement('div');
+					listDiv.appendChild(imgDiv);
+					listDiv.appendChild(textDiv);
+					// listDiv.setAttribute('style', 'position: absolute;')
+
+					// appends text/img to the list item and eventually body
+					newListItem.appendChild(listDiv);
 					newList.appendChild(newListItem);
+					// newList.setAttribute('style', 'position: absolute;')
+
 
 				}
 				newParagraph.appendChild(newList);
 				bodyNode.appendChild(newParagraph);
 			}
 
-			// creating a new book list and books
+			// creating a new book list
 			var reading = new BookList();
-			var gameOfThrones = new Book("Game of Thrones", "George R R Martin", "Fantasy");
-			var prideAndPrejudice = new Book("Pride and Prejudice", "Jane Austen", "Fiction");
-			var crakeAndOryx = new Book("Crake and Oryx", "Margaret Atwood", "Sci-fi");
 
-			// adding books to the reading list
-			reading.add(gameOfThrones);
-			reading.add(prideAndPrejudice);
-			reading.add(crakeAndOryx);
+			// an assortment of books pulled from NPR's top 100 Sci-Fi/Fantasy book list
+			// http://www.npr.org/2011/08/11/139085843/your-picks-top-100-science-fiction-fantasy-books
+			var snowCrash = new Book("Snow Crash", "Neal Stephenson", "Sci-fi", "http://media.npr.org/assets/bakertaylor/covers/s/snow-crash/9780553380958_custom-22c9da1421a98b974b679cc139bd5c9ebbf1b678-s2-c85.jpg");
+			reading.add(snowCrash);
 
+			var hitchhikersGuide = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adams", "Sci-fi", "http://media.npr.org/assets/bakertaylor/covers/t/the-hitchhikers-guide-to-the-galaxy/9780345391803_custom-94fb9d4ba936bf0e6dff52bf2b7ad8c866f82470-s2-c85.jpg");
+			reading.add(hitchhikersGuide);
+
+			var braveNewWorld = new Book("Brave New World", "Aldous Huxley", "Sci-fi", "http://media.npr.org/assets/bakertaylor/covers/b/brave-new-world/9780060850524_custom-a242141b2bf435e941ea78a5345a6f69e0cf528f-s2-c85.jpg");
+			reading.add(braveNewWorld);
+
+			var timeMachine = new Book("The Time Machine", "H.G. Wells", "Sci-fi", "http://media.npr.org/assets/bakertaylor/covers/t/the-time-machine/9780486284729_custom-4cfb8ab7d2a9cba00f983081c6a8080fc823f866-s2-c85.jpg");
+			reading.add(timeMachine);
+
+			var timeTravelersWife = new Book("The Time Traveler's Wife", "Audrey Niffenegger", "Romance", "http://media.npr.org/assets/bakertaylor/covers/t/the-time-travelers-wife/9780156029438_custom-44dc30ffee180d3f969caaa389414cfb07eb377c-s2-c85.jpg");
+			reading.add(timeTravelersWife);
+
+			var stardust = new Book("Stardust", "Neil Gaiman", "Fantasy", "http://media.npr.org/assets/bakertaylor/covers/s/stardust/9780380804559_custom-0b358a7ca2eebaa956172de200f482eb169e2689-s2-c85.jpg");
+			reading.add(stardust);
+
+			var handmaidsTale = new Book("The Handmaid's Tale", "Margaret Atwood", "Sci-fi", "http://media.npr.org/assets/bakertaylor/covers/t/the-handmaids-tale/9780307264602_custom-be4a744c563f680117bdcc74958995e07ba8b709-s2-c85.jpg");
+			reading.add(handmaidsTale);
+
+			var clockworkOrange = new Book("A Clockwork Orange", "Anthony Burgess", "Fiction", "http://media.npr.org/assets/bakertaylor/covers/a/a-clockwork-orange/9780393312836_custom-4fe7d51bee4a895826ee53bdb41197d99365a8eb-s2-c85.jpg");
+			reading.add(clockworkOrange);
+
+			var sunshine = new Book("Sunshine", "Robin McKinley", "Sci-fi", "http://media.npr.org/assets/bakertaylor/covers/s/sunshine/9780142411100_custom-9b8db6164a7470d53b397e02ba5ad62de5884bec-s2-c85.jpg");
+			reading.add(sunshine);
+
+			var princessBride = new Book("The Princess Bride", "William Goldman", "Romance", "http://media.npr.org/assets/bakertaylor/covers/t/the-princess-bride/9780156035217_custom-69cc59005e0af076765c029f6ec69ba6f123abaa-s2-c85.jpg");
+			reading.add(princessBride);
+
+			// things to go to show on the HTML page
 			listBooks();
+
 		</script>
 	</body>
 </html>
